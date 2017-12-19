@@ -6,7 +6,7 @@ let ajax = $.get('https://den-super-crud.herokuapp.com/books/')
     .done(function(data){ 
         console.log(data.books);
         for (let i=0; i<data.books.length; i++){
-            $('#books').append($('<li>').html("Title: " + data.books[i].title + "<br>" + "Author: " + data.books[i].author + "<br>" + "Release Date: " + data.books[i].releaseDate  + "<br>" + "<img src=" +  data.books[i].image + "</img>" ));
+            $('#books').append($('<li>').html("Title: " + data.books[i].title + "<br>" + "Author: " + data.books[i].author + "<br>" + "Release Date: " + data.books[i].releaseDate  + "<br>" + "<img src='" +  data.books[i].image + "'>" ));
             let id = data.books[i]._id;
             
             let title = data.books[i].title;
@@ -18,7 +18,25 @@ let ajax = $.get('https://den-super-crud.herokuapp.com/books/')
 
     })
    
+    // var main = $('#main');
+    // function makeResults() {
 
+        // $( "<section class='container results'><h1></h1>" ).appendTo(main);
+
+
+    $("form").on("submit", function(event){
+        event.preventDefault();
+       
+        $.post( "https://den-super-crud.herokuapp.com/books/", { title: "Title", author: "Author" } );
+
+        let title = $('#book-title').val(); 
+        console.log(title)
+        let author = $('#book-author').val();
+       let image = $('#book-image').val();
+        let releaseDate = $('#book-release-date').val();
+    });
+    
+   
 
 
     // ----receive function----v
